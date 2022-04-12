@@ -9,7 +9,7 @@ export default function MovieSearchResults(params) {
   const searchTerm = params.searchedFor;
   const [currentPage, setCurrentPage] = useState(1);
   let [currentPageQuery, setCurrentPageQuery] = useState("") 
-  const path = "/3/search/movie/?query=" + searchTerm + "&include_adult=false&"+currentPageQuery;
+  const path = "/3/search/movie?query=" + searchTerm + "&include_adult=false&"+currentPageQuery;
   const { data: movieList, isPending, error } = useFetch(path);
   
 

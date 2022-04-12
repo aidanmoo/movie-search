@@ -13,6 +13,7 @@ export const useFetch = (path) => {
 
     const fetchData = async () => {
       setIsPending(true);
+      console.log(url)
 
       try {
         const res = await fetch(url, { signal: controller.signal });

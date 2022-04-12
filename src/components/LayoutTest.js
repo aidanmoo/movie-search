@@ -1,57 +1,52 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import MovieSearchResults from "../pages/MovieSearchResults";
 import PopularMovies from "../components/PopularMovies";
 import PopularMovieFilters from "../components/PopularMovieFilters";
-import { useState } from "react";
-
-
-
-
 
 export default function LayoutTest(params) {
-  
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      
+
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
             boxSizing: "border-box",
           },
         }}
       >
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
-          {!searchedFor && <PopularMovieFilters setSelectedGenres={setSelectedGenres} setSelectedCertification={setSelectedCertification}  />}
-          {searchedFor && <p>Clear Keyword Search To Enable Filter</p>}
+          {!params.searchedFor && (
+            <PopularMovieFilters
+              setSelectedGenres={setSelectedGenres}
+              setSelectedCertification={setSelectedCertification}
+            />
+          )}
+          {params.searchedFor && <p>Clear Keyword Search To Enable Filter</p>}
           <Divider />
-          </Box>
+        </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <Toolbar />
-     
-      
-      {!searchedFor && <PopularMovies selectedGenres={selectedGenres} selectedCertification={selectedCertification}/>}
+        <Toolbar />
 
-      {searchedFor && <MovieSearchResults searchedFor={searchedFor} />}
+        {!params.searchedFor && (
+          <PopularMovies
+            selectedGenres={params.selectedGenres}
+            selectedCertification={params.selectedCertification}
+          />
+        )}
+
+        {params.searchedFor && (
+          <MovieSearchResults searchedFor={params.searchedFor} />
+        )}
       </Box>
     </Box>
   );

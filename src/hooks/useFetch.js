@@ -1,0 +1,46 @@
+import { useState, useEffect } from "react";
+
+export const useFetch = (path) => {
+  const [data, setData] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
+  const baseURL = "https://api.themoviedb.org";
+  const apiKey = "api_key=369a688db579dc1bdc31bc1932885261";
+  const url = baseURL + path + apiKey;
+
+   useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchData = async () => {
+      setIsPending(true);
+
+      try {
+        const res = await fetch(url, { signal: controller.signal });
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+
+        const data = await res.json();
+
+        setIsPending(false);
+        setData(data);
+        setError(null);
+      } catch (err) {
+        if (err.name === "AbortError") {
+          console.log("the fetch was aborted");
+        } else {
+          setIsPending(false);
+          setError("Could not fetch the data");
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      controller.abort();
+    };
+  }, [url]);
+console.log(data)
+  return { data, isPending, error };
+};

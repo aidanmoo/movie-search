@@ -87,12 +87,6 @@ function App() {
               selectedCertification={selectedCertification}
             />
           </Route>
-          <Route path="/test">
-            <LayoutTest
-              setSearchedFor={setSearchedFor}
-              searchedFor={searchedFor}
-            />
-          </Route>
 
           <Route path="/movie/:id">
             <Movie />

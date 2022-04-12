@@ -7,7 +7,6 @@ import MainMenu from "./components/MainMenu";
 import MovieSearchForm from "./components/MovieSearchForm";
 import Movie from "./pages/Movie";
 import Home from "./pages/Home";
-import LayoutTest from "./components/LayoutTest";
 
 // imports for layout test
 import {

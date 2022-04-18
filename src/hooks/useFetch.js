@@ -5,7 +5,7 @@ export const useFetch = (path) => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   const baseURL = "https://api.themoviedb.org";
-  const apiKey = "api_key=369a688db579dc1bdc31bc1932885261";
+  const apiKey = process.env.apikey;
   const url = baseURL + path + apiKey;
 
    useEffect(() => {
